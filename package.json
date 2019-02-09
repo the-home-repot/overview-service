@@ -1,17 +1,36 @@
 {
-  "name": "",
-  "version": "",
-  "description": "",
+  "name": "overview-service",
+  "description": "> Project description",
   "author": "",
-  "license": "",
+  "license": "ISC",
   "engines": {
     "node": ">=6.13.0"
   },
   "scripts": {
+    "start-server": "nodemon server",
+    "seed": "run-func db/seed.js seeder"
   },
   "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.4",
+    "mysql": "^2.16.0",
+    "nodemon": "^1.18.9",
+    "react": "^16.8.1",
+    "react-dom": "^16.8.1",
+    "run-func": "^1.0.2",
+    "webpack": "^4.29.3"
   },
   "devDependencies": {
-    "eslint-config-hackreactor": "git://github.com/reactorcore/eslint-config-hackreactor"
-  }
+    "eslint-config-hackreactor": "git://github.com/reactorcore/eslint-config-hackreactor.git"
+  },
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/the-home-repot/overview-service.git"
+  },
+  "bugs": {
+    "url": "https://github.com/the-home-repot/overview-service/issues"
+  },
+  "homepage": "https://github.com/the-home-repot/overview-service#readme"
 }
