@@ -12,4 +12,46 @@ con.connect(function(err) {
   }
 });
 
+const updateDescriptions = (cb, {id}) => {
+  let queryStr = "SELECT description FROM descriptions WHERE product_id =" + id + ';';
+  con.query(queryStr, (err, res) => {
+    if (err) { 
+      console.log('Error querying descriptions') 
+      cb(err);
+    } else {
+      console.log("Successful GET from Descriptions!");
+      cb(null, res);
+    }
+  })
+}
+
+const updateProducts = (cb, {id}) => {
+  let queryStr = "SELECT title, price FROM products WHERE id =" + id + ';';
+  con.query(queryStr, (err, res) => {
+    if (err) { 
+      console.log('Error querying descriptions') 
+      cb(err);
+    } else {
+      console.log("Successful GET from Descriptions!");
+      cb(null, res);
+    }
+  })
+} 
+
+const updateReviews = (cb, {id}) => {
+let queryStr = "SELECT rating FROM reviews WHERE product_id =" + id + ';';
+con.query(queryStr, (err, res) => {
+  if (err) { 
+    console.log('Error querying reviews') 
+    cb(err);
+  } else {
+    console.log("Successful GET from reviews!");
+    cb(null, res);
+  }
+})
+}
+
 module.exports.con = con;
+module.exports.uD = updateDescriptions;
+module.exports.uP = updateProducts;
+module.exports.uR = updateReviews;

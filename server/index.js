@@ -1,46 +1,50 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const {con} = require('../db/index.js');
+const {uD, uP, uR} = require('../db/index.js');
 const app = express();
 const port = 3000;
 
 app.use( bodyParser.json() );
 app.use( bodyParser.urlencoded({ extended: true }) );
 
-app.get('/products', (req, res) => {
-  con.query("SELECT * FROM products", (err, res) => {
-    if (err) { 
-      console.log('Error querying products') 
+
+app.post('/products', ({body}, res) => {
+  const cb = (err, results) => {
+    if (err) {
+      console.log('Error in products get request!');
+      res.status(404).send();
     } else {
-      console.log("Successful GET from Products!");
-      console.log(res)
+      console.log('Successful get in products!');
+      res.status(200).send(results);
     }
-  })
-  res.send('Success');
+  }
+  uP(cb, body);
 });
 
-app.get('/reviews', (req, res) => {
-  con.query("SELECT * FROM reviews", (err, res) => {
-    if (err) { 
-      console.log('Error querying reviews') 
+app.post('/reviews', ({body}, res) => {
+  const cb = (err, results) => {
+    if (err) {
+      console.log('Error in reviews get request!');
+      res.status(404).send();
     } else {
-      console.log("Successful GET from Reviews!");
-      console.log(res);
+      console.log('Successful get in reviews!');
+      res.status(200).send(results);
     }
-  })
-  res.send('Success');
+  }
+  uR(cb, body);
 });
 
-app.get('/descriptions', (req, res) => {
-  con.query("SELECT * FROM descriptions", (err, res) => {
-    if (err) { 
-      console.log('Error querying descriptions') 
+app.post('/descriptions', ({body}, res) => {
+  const cb = (err, results) => {
+    if (err) {
+      console.log('Error in desc get request!');
+      res.status(404).send();
     } else {
-      console.log("Successful GET from Descriptions!");
-      console.log(res);
+      console.log('Successful get in descriptions!');
+      res.status(200).send(results);
     }
-  })
-  res.send('success')
+  }
+  uD(cb, body);
 });
 
 app.use(express.static(__dirname + '/../public'));

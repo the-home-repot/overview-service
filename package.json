@@ -8,20 +8,29 @@
   },
   "scripts": {
     "start-server": "nodemon server",
+    "start-wp": "webpack -d --watch",
     "seed": "run-func db/seed.js seeder"
   },
   "dependencies": {
+    "@babel/core": "^7.2.2",
+    "@babel/preset-env": "^7.3.1",
+    "@babel/preset-react": "^7.0.0",
+    "babel-loader": "^8.0.5",
     "body-parser": "^1.18.3",
     "express": "^4.16.4",
+    "jquery": "^3.3.1",
     "mysql": "^2.16.0",
     "nodemon": "^1.18.9",
     "react": "^16.8.1",
     "react-dom": "^16.8.1",
+    "request": "^2.88.0",
+    "request-promise": "^4.2.2",
     "run-func": "^1.0.2",
     "webpack": "^4.29.3"
   },
   "devDependencies": {
-    "eslint-config-hackreactor": "git://github.com/reactorcore/eslint-config-hackreactor.git"
+    "eslint-config-hackreactor": "git://github.com/reactorcore/eslint-config-hackreactor.git",
+    "webpack-cli": "^3.2.3"
   },
   "version": "1.0.0",
   "main": "index.js",
