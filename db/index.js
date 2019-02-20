@@ -1,57 +1,29 @@
 const mysql = require('mysql');
 const mysqlConfig = require('./config')
-const {data} = require('./mock_data.js');
-
 const con = mysql.createConnection(mysqlConfig);
+con.connect((err) => err ? console.log('Err connected to DB') : console.log('Connected to DB!'));
 
-con.connect(function(err) {
-  if (err) {
-    console.log('There was an error connecting to DB');
-  } else {
-    console.log("Connected to DB!");
-  }
-});
-
-const updateDescriptions = (cb, {id}) => {
-  let queryStr = "SELECT description FROM descriptions WHERE product_id =" + id + ';';
-  con.query(queryStr, (err, res) => {
-    if (err) { 
-      console.log('Error querying descriptions') 
-      cb(err);
-    } else {
-      console.log("Successful GET from Descriptions!");
-      cb(null, res);
-    }
-  })
+const queryDB  = (cb, id) =>  {    
+  let queryDescsStr = 'SELECT description FROM descriptions WHERE product_id =' + id + ';';
+  let queryProductsStr = 'SELECT title, price FROM products WHERE id =' + id + ';';
+  let queryReviewsStr = 'SELECT rating FROM reviews WHERE product_id =' + id + ';';
+  con.query(queryDescsStr, (err, descs) => {
+    err ? console.log('Error querying descriptions') : console.log('Successful DB query for descriptions');
+    con.query(queryProductsStr, (err, prods) => {
+      err ? console.log('Error querying products') : console.log('Successful DB query for products');
+      con.query(queryReviewsStr, (err, revs) => {
+        err ? console.log('Error querying reviews') : console.log('Successful DB query for reviews');
+        con.end((err) => {
+          err ? console.log('Error closing DB connection') :
+          queryResults = {
+            descs: descs,
+            prods: prods,
+            revs: revs
+          }
+          cb(null, queryResults);     
+        })
+      })
+    })
+  }) 
 }
-
-const updateProducts = (cb, {id}) => {
-  let queryStr = "SELECT title, price FROM products WHERE id =" + id + ';';
-  con.query(queryStr, (err, res) => {
-    if (err) { 
-      console.log('Error querying descriptions') 
-      cb(err);
-    } else {
-      console.log("Successful GET from Descriptions!");
-      cb(null, res);
-    }
-  })
-} 
-
-const updateReviews = (cb, {id}) => {
-let queryStr = "SELECT rating FROM reviews WHERE product_id =" + id + ';';
-con.query(queryStr, (err, res) => {
-  if (err) { 
-    console.log('Error querying reviews') 
-    cb(err);
-  } else {
-    console.log("Successful GET from reviews!");
-    cb(null, res);
-  }
-})
-}
-
-module.exports.con = con;
-module.exports.uD = updateDescriptions;
-module.exports.uP = updateProducts;
-module.exports.uR = updateReviews;
+module.exports.queryDB = queryDB;

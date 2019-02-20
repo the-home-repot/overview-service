@@ -1,11 +1,11 @@
 import React from 'react';
 import DescriptionItem from './DescriptionItem.jsx'
 
-const Description = ({tempvar}) => {
+const Description = ({descriptions}) => {
    return (
      <ul> 
-       {tempvar.map((val, i) => {
-         return <DescriptionItem key={i} listVal={val} />
+       {descriptions.map((val, i) => {
+         return <DescriptionItem key={i} listVal={val.description} />
        })}
      </ul>
    )

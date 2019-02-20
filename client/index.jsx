@@ -1,85 +1,59 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import $ from 'jquery';
-import Title from './components/title.jsx'
-import Rating from './components/rating.jsx'
-import Description from './components/description.jsx'
-import Price from './components/price.jsx'
-import AddToCart from './components/addtocart.jsx'
+import axios from 'axios';
+import Title from './components/title.jsx';
+import Rating from './components/rating.jsx';
+import Description from './components/description.jsx';
+import Price from './components/price.jsx';
+import AddToCart from './components/addtocart.jsx';
+
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      id: 32,
+      id: 78,
       title: null,
       descs: [],
       price: null,
-    }
+      rating: null,
+      cart: 0
+    } 
   }
   componentDidMount() {
-      const data = {id: this.state.id};
-      const updatedState = {};
-      $.ajax({
-        method: 'POST',
-        url: '/descriptions',
-        data: data,
-        success: (res) => {
-          console.log('Super Successful GET');
-          let descs = [];
-          for (let obj of res) {
-            descs.push(obj.description)
-          }
-          updatedState.descs = descs;
-        },
-        error: () => {
-          console.log('error getting descriptions')
-        }
-      })
-      $.ajax({
-        method: 'POST',
-        url: '/products',
-        data: data,
-        success: (res) => {
-          console.log('Super Successful GET');
-          let {title, price} = res[0];
-          updatedState.title = title;
-          updatedState.price = price;
-          this.setState(updatedState);
-        },
-        error: () => {
-          console.log('error getting products')
-        }
-      })
+      //Array received is an array of objects individual ratings stored in a "rating" property.
+      const averageRating = (arr) => {
+        let total = arr.reduce((acc, obj) => {
+          return acc + obj.rating;
+        }, 0)
+        let avgRating = (total / arr.length).toFixed(1);
+        return avgRating;
+      }
 
-      //Post Request for Reviews
-      $.ajax({
-        method: 'POST',
-        url: '/reviews',
-        data: data,
-        success: (res) => {
-          console.log('Super Successful GET');
-          console.log(res);
-          let total = res.reduce((acc, obj) => {
-            return acc + obj.rating;
-          }, 0);
-          let avgRating = (total / res.length).toFixed(1);
-          console.log(avgRating);
-          updatedState.rating = avgRating;
-          this.setState(updatedState);
-        },
-        error: () => {
-          console.log('error getting reviews')
-        }
-      })
+      axios.get(`/product_info/${this.state.id}`)
+        .then((info) => {
+          console.log('info', info);
+          const updatedState = {
+                  title: info.data.prods[0].title,
+                  descs: info.data.descs,
+                  price: info.data.prods[0].price,
+                  rating: averageRating(info.data.revs)
+                }   
+                return updatedState; 
+        }).then((state) => {
+          this.setState(state);
+        }).catch((err) => {
+          console.log('Error in axios GET request')
+        })
     }
   
   render() {
     return (
       <div className="flex-container">
+        {/* <TempCart /> */}
         <Title title={this.state.title} />
         <Rating rating={this.state.rating} />
-        <Description tempvar={this.state.descs} />
+        <Description descriptions={this.state.descs} />
         <Price price={this.state.price} />
         <AddToCart /> 
       </div>
