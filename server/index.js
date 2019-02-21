@@ -4,6 +4,8 @@ const {queryDB} = require('../db/index.js');
 const app = express();
 const port = 3000;
 
+console.log('I\'m running here PM2');
+
 app.use( bodyParser.json() );
 app.use( bodyParser.urlencoded({ extended: true }) );
 
