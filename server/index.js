@@ -11,10 +11,10 @@ app.get('/product_info/:ID', (req, res) => {
   let id = req.params.ID;
   const cb = (err, results) => {
     if (err) {
-      console.log('Error in products get request!');
+      console.log('Error in get request!');
       res.status(404).send();
     } else {
-      console.log('Successful get in products!');
+      console.log('Successful get request!');
       res.status(200).send(results);
     }
   }
