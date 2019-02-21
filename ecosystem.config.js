@@ -1,6 +1,6 @@
 module.exports = {
   apps: [{
-    name: 'product-overview',
+    name: 'overview-service',
     script: './index.js'
   }],
   deploy: {
@@ -10,7 +10,7 @@ module.exports = {
       key: '~/.ssh/keyanureeves.pem',
       ref: 'origin/master',
       repo: 'git@github.com:the-home-repot/overview-service.git',
-      path: '/home/ubuntu/product-overview',
+      path: '/home/ubuntu/overview-service',
       'post-deploy': 'npm install && pm2 startOrRestart ecosystem.config.js'
     }
   }
