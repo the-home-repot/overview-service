@@ -7,7 +7,6 @@ import Description from './components/description.jsx';
 import Price from './components/price.jsx';
 import AddToCart from './components/addtocart.jsx';
 
-
 class App extends React.Component {
   constructor(props) {
     super(props);
