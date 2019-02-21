@@ -3,6 +3,7 @@ module.exports = {
     name: 'product-overview',
     script: './index.js'
   }],
+  
   deploy: {
     production: {
       user: 'ubuntu',
