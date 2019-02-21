@@ -9,6 +9,8 @@
   "scripts": {
     "start-server": "nodemon server",
     "start-wp": "webpack -d --watch",
+    "restart": "pm2 startOrRestart ecosystem.config.js",
+    "deploy": "pm2 deploy ecosystem.config.js production",
     "seed": "run-func db/seed.js seeder"
   },
   "dependencies": {
