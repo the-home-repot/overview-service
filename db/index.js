@@ -8,13 +8,13 @@ const queryDB  = (cb, id) =>  {
   let queryProductsStr = 'SELECT title, price FROM products WHERE id =' + id + ';';
   let queryReviewsStr = 'SELECT rating FROM reviews WHERE product_id =' + id + ';';
   con.query(queryDescsStr, (err, descs) => {
-    err ?  cb(err) : console.log('Successful DB query for descriptions');
+    err ?  cb('here 1') : console.log('Successful DB query for descriptions');
     con.query(queryProductsStr, (err, prods) => {
-      err ? console.log('Error querying products') : console.log('Successful DB query for products');
+      err ? cb('here 2') : console.log('Successful DB query for products');
       con.query(queryReviewsStr, (err, revs) => {
-        err ? console.log('Error querying reviews') : console.log('Successful DB query for reviews');
+        err ? cb('here 3') : console.log('Successful DB query for reviews');
         con.end((err) => {
-          err ? console.log('Error closing DB connection') :
+          err ? cb('here 4') :
           queryResults = {
             descs: descs,
             prods: prods,
