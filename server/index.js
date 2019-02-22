@@ -5,12 +5,13 @@ const app = express();
 const port = 3030;
 
 app.use(express.static(__dirname + '/../public'));
+
 console.log('I\'m running here PM2');
 
 app.use( bodyParser.json() );
 app.use( bodyParser.urlencoded({ extended: true }) );
 
-app.get('/product_info/:ID', (req, res) => {
+app.get('/productinfo/:ID', (req, res) => {
   let id = req.params.ID;
   const cb = (err, results) => {
     if (err) {

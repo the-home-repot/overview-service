@@ -31,7 +31,7 @@ class App extends React.Component {
         return avgRating;
       }
 
-      axios.get(`/product_info/${this.state.id}`)
+      axios.get(`/productinfo/${this.state.id}`)
         .then((info) => {
           console.log('hit here before error');
           const updatedState = {
