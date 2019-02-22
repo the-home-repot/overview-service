@@ -11,7 +11,7 @@ module.exports = {
       ref: 'origin/master',
       repo: 'https://github.com/the-home-repot/overview-service.git',
       path: '/home/ubuntu/overview-service',
-      'post-deploy': 'npm install && npm run deploy-wp && pm2 startOrRestart ecosystem.config.js'
+      'post-deploy': 'npm install && pm2 startOrRestart ecosystem.config.js'
     }
   }
 }
