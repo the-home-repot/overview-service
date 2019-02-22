@@ -7,7 +7,7 @@ const queryDB  = (cb, id) =>  {
   let queryDescsStr = 'SELECT description FROM descriptions WHERE product_id =' + id + ';';
   let queryProductsStr = 'SELECT title, price FROM products WHERE id =' + id + ';';
   let queryReviewsStr = 'SELECT rating FROM reviews WHERE product_id =' + id + ';';
-  con.connect((err) => err ? console.log('Err connected to DB') : console.log('Connected to DB!'));
+  con.connect((err) => err ? err ?  cb('here 1 lkj', err) : console.log('Connected to DB!'));
   con.query(queryDescsStr, (err, descs) => {
     err ?  cb('here 1') : console.log('Successful DB query for descriptions');
     con.query(queryProductsStr, (err, prods) => {
