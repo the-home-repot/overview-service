@@ -21,6 +21,8 @@ class App extends React.Component {
   }
   componentDidMount() {
       //Array received is an array of objects individual ratings stored in a "rating" property.
+      console.log('Hitting here in compDidMount');
+      
       const averageRating = (arr) => {
         let total = arr.reduce((acc, obj) => {
           return acc + obj.rating;
