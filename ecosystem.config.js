@@ -6,7 +6,7 @@ module.exports = {
   deploy: {
     production: {
       user: 'ubuntu',
-      host: 'ec2-18-220-141-181.us-east-2.compute.amazonaws.com',
+      host: 'ec2-13-59-174-32.us-east-2.compute.amazonaws.com',
       key: '~/.ssh/keyanureeves.pem',
       ref: 'origin/master',
       repo: 'https://github.com/the-home-repot/overview-service.git',
