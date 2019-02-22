@@ -2,7 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const {queryDB} = require('../db/index.js');
 const app = express();
-const port = 3000;
+const port = 3030;
 
 console.log('I\'m running here PM2');
 

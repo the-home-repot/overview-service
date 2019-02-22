@@ -11,7 +11,7 @@ const descInsert = () => {
       let queryStr = 'INSERT INTO descriptions (description, product_id) VALUES ("' + desc + '",' + productId + ');'
       con.query(queryStr, (err, res) => {
         if (err) { 
-          console.log('Error querying DB descriptions') 
+          console.log('Error querying DB descriptions', err) 
         } else {
           console.log("Successfully seeded!");
         }
@@ -28,13 +28,13 @@ const productInsert = () => {
     let price = (Math.floor(Math.random() * 20) + 1) * 50;
     let product = products[index];
     let queryStr = 'INSERT INTO products (title, price) VALUES ("' + product + '",' + price + ');'
-    con.query(queryStr, (err, res) => {
-      if (err) { 
-        console.log('Error querying DB products') 
-      } else {
-        console.log("Successfully seeded!");
-      }
-    })
+    // con.query(queryStr, (err, res) => {
+    //   if (err) { 
+    //     console.log('Error querying DB products') 
+    //   } else {
+    //     console.log("Successfully seeded!");
+    //   }
+    // })
     index++;
   }
 
@@ -46,13 +46,13 @@ const reviewInsert = () => {
     let rating = Math.floor(Math.random() * 5) + 1;
     let productId = Math.floor(Math.random() * 100) + 1;
     let queryStr = "INSERT INTO reviews (rating, product_id) VALUES (" + rating + ',' + productId + ");"
-    con.query(queryStr, (err, res) => {
-      if (err) { 
-        console.log('Error querying DB reviews') 
-      } else {
-        console.log("Successfully seeded!");
-      }
-    })
+    // con.query(queryStr, (err, res) => {
+    //   if (err) { 
+    //     console.log('Error querying DB reviews') 
+    //   } else {
+    //     console.log("Successfully seeded!");
+    //   }
+    // })
     index++;
   }
 }
