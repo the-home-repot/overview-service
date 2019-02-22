@@ -4,6 +4,7 @@ const {queryDB} = require('../db/index.js');
 const app = express();
 const port = 3030;
 
+app.use(express.static(__dirname + '/../public'));
 console.log('I\'m running here PM2');
 
 app.use( bodyParser.json() );
@@ -27,6 +28,5 @@ app.get('/test', (req, res) => {
   res.send('Success');
 })
 
-app.use(express.static(__dirname + '/../public'));
 
 app.listen(port, () => console.log('Now listening on port: ' + port));
