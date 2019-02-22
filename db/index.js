@@ -8,7 +8,7 @@ const queryDB  = (cb, id) =>  {
   let queryProductsStr = 'SELECT title, price FROM products WHERE id =' + id + ';';
   let queryReviewsStr = 'SELECT rating FROM reviews WHERE product_id =' + id + ';';
   con.query(queryDescsStr, (err, descs) => {
-    err ? console.log('Error querying descriptions') : console.log('Successful DB query for descriptions');
+    err ?  cb(err) : console.log('Successful DB query for descriptions');
     con.query(queryProductsStr, (err, prods) => {
       err ? console.log('Error querying products') : console.log('Successful DB query for products');
       con.query(queryReviewsStr, (err, revs) => {
