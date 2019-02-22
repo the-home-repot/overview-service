@@ -27,3 +27,4 @@ const queryDB  = (cb, id) =>  {
   }) 
 }
 module.exports.queryDB = queryDB;
+module.exports.con = con;
