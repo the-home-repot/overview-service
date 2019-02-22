@@ -44,7 +44,7 @@ class App extends React.Component {
         }).then((state) => {
           this.setState(state);
         }).catch((err) => {
-          console.log('Error in axios GET request')
+          console.log('Error in axios GET request', err)
         })
     }
   
