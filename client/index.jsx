@@ -19,26 +19,22 @@ class App extends React.Component {
       cart: 0
     } 
   }
-  componentDidMount() {
-      //Array received is an array of objects individual ratings stored in a "rating" property.
-      console.log('Hitting here in compDidMount', this.state.id);
-      
-      const averageRating = (arr) => {
-        let total = arr.reduce((acc, obj) => {
-          return acc + obj.rating;
-        }, 0)
-        let avgRating = (total / arr.length).toFixed(1);
-        return avgRating;
-      }
-
-      axios.get(`/productinfo/${this.state.id}`)
+  averageRating(arr) {
+    let total = arr.reduce((acc, obj) => {
+      return acc + obj.rating;
+    }, 0)
+    let avgRating = (total / arr.length).toFixed(1);
+    return avgRating;
+  }
+  getProductInfo() {
+    axios.get(`/productinfo/${this.state.id}`)
         .then((info) => {
           console.log('hit here before error');
           const updatedState = {
                   title: info.data.prods[0].title,
                   descs: info.data.descs,
                   price: info.data.prods[0].price,
-                  rating: averageRating(info.data.revs)
+                  rating: this.averageRating(info.data.revs)
                 }   
                 return updatedState; 
         }).then((state) => {
@@ -46,6 +42,17 @@ class App extends React.Component {
         }).catch((err) => {
           console.log('Error in axios GET request', err)
         })
+  }
+  componentDidMount() {
+    window.addEventListener('updateProduct'), event => {
+      this.setState({id: event.detail})
+    }
+    this.getProductInfo();
+  }
+    componentDidUpdate(prevProps, prevState) {
+      if (this.state.id !== prevState.id) {
+        this.updateReviews()
+      }
     }
   
   render() {
