@@ -15,7 +15,6 @@ const queryDB  = (cb, id) =>  {
       con.query(queryReviewsStr, (err, revs) => {
         err ? console.log('Error querying DB reviews') : console.log('Successful DB query for reviews');
         con.end((err) => {
-          const queryResults = {};
           err ? console.log('Error ending DB connection') :
           queryResults = {
             descs: descs,
