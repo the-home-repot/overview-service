@@ -44,15 +44,14 @@ class App extends React.Component {
         })
   }
   componentDidMount() {
-    window.addEventListener('updateProduct'), event => {
-      console.log('Testing');
+    window.addEventListener('updateProduct', event => {
       this.setState({id: event.detail})
-    }
+    })
     this.getProductInfo();
   }
     componentDidUpdate(prevProps, prevState) {
       if (this.state.id !== prevState.id) {
-        this.updateReviews()
+        this.updateReviews();
       }
     }
   
