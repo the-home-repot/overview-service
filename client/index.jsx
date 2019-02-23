@@ -29,7 +29,7 @@ class App extends React.Component {
   getProductInfo() {
     axios.get(`/productinfo/${this.state.id}`)
         .then((info) => {
-          console.log(this.state.id);
+          console.log(info);
           const updatedState = {
                   title: info.data.prods[0].title,
                   descs: info.data.descs,
