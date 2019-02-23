@@ -45,6 +45,7 @@ class App extends React.Component {
   }
   componentDidMount() {
     window.addEventListener('updateProduct'), event => {
+      console.log('Testing');
       this.setState({id: event.detail})
     }
     this.getProductInfo();
