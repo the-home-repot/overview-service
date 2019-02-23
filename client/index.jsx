@@ -51,6 +51,7 @@ class App extends React.Component {
   }
     componentDidUpdate(prevProps, prevState) {
       if (this.state.id !== prevState.id) {
+        console.log('i hit here recnetly');
         this.getProductInfo();
       }
     }
