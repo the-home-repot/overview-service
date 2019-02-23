@@ -13,7 +13,6 @@ app.use( bodyParser.urlencoded({ extended: true }) );
 
 app.get('/productinfo/:ID', (req, res) => {
   let id = req.params.ID;
-  console.log(id);
   const cb = (err, results) => {
     if (err) {
       console.log('Error in get request!');

@@ -27,7 +27,6 @@ class App extends React.Component {
     return avgRating;
   }
   getProductInfo() {
-    console.log(this.state.id)
     axios.get(`/productinfo/${this.state.id}`)
         .then((info) => {
           console.log(info);
@@ -41,7 +40,6 @@ class App extends React.Component {
                    
                 return updatedState; 
         }).then((state) => {
-          console.log(state);
           console.log('I hit here')
           this.setState(state);
           console.log(this.state)
