@@ -3,5 +3,5 @@ module.exports = {
   port: 3306,
   user: "user",
   password: "password",
-  database: 'front_end_capstone'
+  database: "front_end_capstone"
 };
