@@ -1,5 +1,6 @@
 const mysql = require('mysql');
-const mysqlConfig = require('./config')
+const mysqlConfig = require('./config');
+console.log(mysqlConfig);
 const con = mysql.createConnection(mysqlConfig);
 con.connect((err) => err ? console.log('Err connected to DB') : console.log('Connected to DB!'));
 
