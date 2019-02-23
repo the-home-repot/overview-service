@@ -17,7 +17,7 @@ app.get('/productinfo/:ID', (req, res) => {
   const cb = (err, results) => {
     if (err) {
       console.log('Error in get request!');
-      res.status(404).send(err);
+      res.status(404).send();
     } else {
       console.log('Successful get request!');
       res.status(200).send(results);
