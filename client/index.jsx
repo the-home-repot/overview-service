@@ -27,6 +27,7 @@ class App extends React.Component {
     return avgRating;
   }
   getProductInfo() {
+    console.log(this.state.id)
     axios.get(`/productinfo/${this.state.id}`)
         .then((info) => {
           console.log(info);
