@@ -35,9 +35,12 @@ class App extends React.Component {
                   descs: info.data.descs,
                   price: info.data.prods[0].price,
                   rating: this.averageRating(info.data.revs)
-                }   
+                }
+                console.log('updatedState', updatedState);
+                   
                 return updatedState; 
         }).then((state) => {
+          console.log('I hit here')
           this.setState(state);
           console.log(this.state)
         }).catch((err) => {
