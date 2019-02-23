@@ -50,8 +50,8 @@ class App extends React.Component {
   componentDidMount() {
     window.addEventListener('updateProduct', event => {
       this.setState({id: event.detail});
-      this.getProductInfo();
     })
+    this.getProductInfo();
   }
     componentDidUpdate(prevProps, prevState) {
       if (this.state.id !== prevState.id) {
