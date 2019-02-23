@@ -49,6 +49,7 @@ class App extends React.Component {
     }
   
   render() {
+    if (this.state.title !== null) {
     return (
       <div className="flex-container">
         {/* <TempCart /> */}
@@ -59,6 +60,11 @@ class App extends React.Component {
         <AddToCart /> 
       </div>
     )
+    } else {
+      return (
+        <div></div>
+      )
+    }
   }
 }
 
