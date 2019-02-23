@@ -39,6 +39,7 @@ class App extends React.Component {
                 return updatedState; 
         }).then((state) => {
           this.setState(state);
+          console.log(this.state)
         }).catch((err) => {
           console.log('Error in axios GET request', err)
         })
