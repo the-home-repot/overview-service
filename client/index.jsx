@@ -26,37 +26,38 @@ class App extends React.Component {
     let avgRating = (total / arr.length).toFixed(1);
     return avgRating;
   }
-  getProductInfo() {
-    axios.get(`/productinfo/${this.state.id}`)
+  getProductInfo(id, callb) {
+    id ? id = id : id = this.state.id;
+    axios.get(`/productinfo/${id}`)
         .then((info) => {
-          console.log(info);
           const updatedState = {
+                  id: id,
                   title: info.data.prods[0].title,
                   descs: info.data.descs,
                   price: info.data.prods[0].price,
                   rating: this.averageRating(info.data.revs)
                 }
                 console.log('updatedState', updatedState);
-                   
-                return updatedState; 
-        }).then((state) => {
-          console.log('I hit here')
-          this.setState(state);
-          console.log(this.state)
+                // this.setState(updatedState);
+                if (callb) {
+                  callb(updatedState);
+                } 
         }).catch((err) => {
           console.log('Error in axios GET request', err)
         })
   }
   componentDidMount() {
+    function callb (state) {
+      this.setState(state);
+    }
     window.addEventListener('updateProduct', event => {
-      this.setState({id: event.detail});
+      this.getProductInfo(event.detail, callb);
     })
     this.getProductInfo();
   }
     componentDidUpdate(prevProps, prevState) {
-      if (this.state.id !== prevState.id) {
-        console.log('i hit here recnetly');
-        this.getProductInfo();
+      if (this.state.id, prevState) {
+
       }
     }
   
