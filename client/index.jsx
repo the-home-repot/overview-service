@@ -53,13 +53,16 @@ class App extends React.Component {
     window.addEventListener('updateProduct', event => {
       this.getProductInfo(event.detail, callb);
     })
-    this.getProductInfo();
+    this.getProductInfo(this.state.id, callb);
   }
-    componentDidUpdate(prevProps, prevState) {
-      if (this.state.id !== prevState) {
-        this.getProductInfo();
-      }
-    }
+    // componentDidUpdate(prevProps, prevState) {
+    //   function callb (state) {
+    //     this.setState(state);
+    //   }
+    //   if (this.state.id !== prevState) {
+    //     this.getProductInfo(this.state.id, callb);
+    //   }
+    // }
   
   render() {
     if (this.state.title !== null) {
