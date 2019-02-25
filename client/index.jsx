@@ -56,8 +56,8 @@ class App extends React.Component {
     this.getProductInfo();
   }
     componentDidUpdate(prevProps, prevState) {
-      if (this.state.id, prevState) {
-
+      if (this.state.id !== prevState) {
+        this.getProductInfo();
       }
     }
   
