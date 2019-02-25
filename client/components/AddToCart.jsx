@@ -16,7 +16,7 @@ class AddToCart extends React.Component {
     }
   }
   resetCount () {
-    this.setState({count: 0})
+    this.setState({count: 1})
   }
   render () {
     return (
